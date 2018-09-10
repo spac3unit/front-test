@@ -1,36 +1,44 @@
 import styled from 'styled-components';
 import React, { Component } from 'react';
-import {
- Box, Image, Text, Button as ButtonRebass 
-} from 'rebass';
+import { Box, Image, Text, Link, Button } from 'rebass';
+import { device } from './devices';
 
 export const ActionButton = ({ img, text, px }) => (
-  <Button px={px}>
+  <StyledButton px={px}>
     <Icon img={img} />
-    <Box style={{ display: 'flex', flexDirection: 'column' }}>
+    <IconButtonTextWrapper>
       <Text fontFamily="Roboto" fontSize="10px">
         Download free
       </Text>
       <Text fontFamily="Rubik" fontSize="15px" fontWeight="medium">
         {text}
       </Text>
-    </Box>
-  </Button>
+    </IconButtonTextWrapper>
+  </StyledButton>
 );
+
+const IconButtonTextWrapper = styled(Box)`
+  display: none;
+  flex-direction: column;
+  padding: 0 10px;
+
+  @media ${device.tablet} {
+    display: flex;
+    }
+`;
 
 const Icon = styled.i`
   display: inline-block;
-  height: 26px;
-  width: 26px;
-  margin-right: 10px;
-  background-image: ${props => `url(${props.img})`};
+  height: 25px;
+  width: 20px;
+  background-image: ${(props) => `url(${props.img})`};
   background-repeat: no-repeat;
 `;
 
-const Button = styled(ButtonRebass)`
+const StyledButton = styled(Button)`
   display: flex;
   flex-direction: row;
-  max-width: 150px;
+  justify-content: flex-start;
   margin-bottom: 10px;
   background: #424F61;
   border: 0;
@@ -43,9 +51,9 @@ const Button = styled(ButtonRebass)`
   font-weight: 500;
   font-size: 10px;
   white-space: nowrap;
-  text-decoration: none;
-  touch-action: manipulation;
   cursor: pointer;
+  transition: all .2s ease;
   &:hover {
+     background: #224E61;
   }
 `;

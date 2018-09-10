@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Wobble, FadeIn, FadeOut } from 'animate-css-styled-components';
 import {
- Button, Box, Image, Text, Flex 
+ Button, Box, Image, Text, Flex, Link 
 } from 'rebass';
 import { translate } from 'react-i18next';
 import { device } from './components/devices';
@@ -31,29 +31,22 @@ class App extends Component {
 
     return (
       <Page>
-        <Header i18n={i18n}>
+        <Header>
           <Logo>
-            <Text fontFamily="Rubik" color="#424F61">
-              Parla&nbsp;
-            </Text>
-            <Text fontFamily="Rubik" fontWeight="bold" color="#6CADD3">
-              X
-            </Text>
+            <span>Parla&nbsp;</span>
+            <span style={{ color: '#6CADD3' }}>X</span>
           </Logo>
-          <Button onClick={() => i18n.changeLanguage('ru')}>ru</Button>
-          <Button onClick={() => i18n.changeLanguage('en')}>en</Button>
+          <LanguageActions i18n={i18n} />
         </Header>
         <Flex flexDirection="column" justifyContent="flex-end" style={{ height: '100%' }} px="20px">
           <CallToAction>
-            <ActionButton img={appleIcon} text="App Store" px="22px" />
-            <ActionButton img={googleIcon} text="Google Play" px="22px" />
+            <ActionButton img={appleIcon} text="App Store" />
+            <ActionButton img={googleIcon} text="Google Play" />
           </CallToAction>
           <Footer t={t}>
-            <Flex flexDirection="row" justifyContent="space-between" alignItems="flex-end">
-              <Slogan t={t} />
-              <Partners />
-              <Socials />
-            </Flex>
+            <Slogan t={t} />
+            <Partners />
+            <Socials />
           </Footer>
         </Flex>
       </Page>
@@ -64,7 +57,7 @@ class App extends Component {
 export default translate('translations')(App);
 
 const Page = styled.div`
-  height: calc(100vh - 100px);
+  height: calc(100vh - 60px);
   background: url(${sombreroBg}) no-repeat right;
   background-size: contain;
   @media ${device.laptop} {
@@ -73,13 +66,33 @@ const Page = styled.div`
   }
 `;
 
-const Header = ({ i18n, children }) => <header>{children}</header>;
-const Footer = ({ children }) => <footer>{children}</footer>;
+const Header = styled(Flex)`
+  align-content: center;
+  align-items: center;
+  height: 60px;
+  padding:0 10px;
+`;
+
+const Footer = styled(Flex)`
+  padding: 22px;
+  flexDirection:row;
+  justify-content: space-between;
+  align-items:flex-end;
+`;
 
 const Logo = styled(Box)`
   display: flex;
   font-weight: bold;
   font-size: 40px;
+  & > span {
+    color: #424F61;
+    font-family: Rubik;
+  }
+`;
+
+const LanguageLink = styled(Link)`
+  margin-right: 20px;
+  cursor: pointer;
 `;
 
 const CallToAction = styled(Box)`
@@ -90,12 +103,35 @@ const CallToAction = styled(Box)`
   align-items: flex-start;
 `;
 
+const LanguageActions = ({ i18n }) => (
+  <Box mx="120px">
+    <LanguageLink
+      href="/ru"
+      onClick={(e) => {
+        e.preventDefault();
+        i18n.changeLanguage('ru');
+      }}
+    >
+      ru
+    </LanguageLink>
+    <LanguageLink
+      href="/en"
+      onClick={(e) => {
+        e.preventDefault();
+        i18n.changeLanguage('en');
+      }}
+    >
+      en
+    </LanguageLink>
+  </Box>
+);
+
 const Slogan = ({ t }) => (
-  <Box fontFamily="Rubik">
-    <Text fontSize="48px" color="#424F61">
+  <Box>
+    <Text fontSize="48px" fontWeight={300} color="#424F61">
       {t('slogan.text1')}
     </Text>
-    <Text fontSize="48px" color="#424F61">
+    <Text fontSize="48px" fontWeight={300} color="#424F61">
       {t('slogan.text2')}
     </Text>
     <Text fontSize="60px" fontWeight="bold" css={{ fontStyle: 'italic', color: '#424F61' }}>
@@ -106,31 +142,28 @@ const Slogan = ({ t }) => (
 
 const Partners = () => (
   <Box>
-    <ul>
-      <li style={{ display: 'inline-block' }}>
-        <Text mx="10px">Yahoo</Text>
-      </li>
-      <li style={{ display: 'inline-block' }}>
-        <Text mx="10px">TC</Text>
-      </li>
-    </ul>
+    <Text css={{ margin: '0 10px', display: 'inline-block' }}>Yahoo</Text>
+    <Text css={{ margin: '0 10px', display: 'inline-block' }}>TC</Text>
   </Box>
 );
 
 const Socials = () => (
   <Box>
-    <ul
-      className="socials"
-      style={{
-        textAlign: 'right',
-        fontFamily: 'Rubik',
-        fontSize: '12px',
-        color: '#A0A8B4',
-      }}
-    >
-      <li>mail</li>
-      <li>facebook</li>
-      <li>instagram</li>
-    </ul>
+    <SocialLink>mail</SocialLink>
+    <SocialLink>facebook</SocialLink>
+    <SocialLink>instagram</SocialLink>
   </Box>
 );
+
+const SocialLink = styled.a`
+  display: block;
+  color: #a0a8b4;
+  text-decoration: none;
+  text-align: right;
+  display: block;
+  cursor: pointer;
+  transition: all .2s ease;
+  &:hover {
+    color: #424f61;
+  }
+`;
