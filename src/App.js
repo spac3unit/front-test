@@ -1,31 +1,18 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Wobble, FadeIn, FadeOut } from 'animate-css-styled-components';
-import {
- Button, Box, Image, Text, Flex, Link 
-} from 'rebass';
 import { translate } from 'react-i18next';
+
+import styled from 'styled-components';
+import { Box, Text, Flex, Link } from 'rebass';
 import { device } from './components/devices';
 import { ActionButton } from './components/Button';
 import './App.css';
+
 import sombreroBg from './sombrero-bg.svg';
 import appleIcon from './apple-icon.svg';
 import googleIcon from './google-icon.svg';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
-  state = {
-    visible: false,
-  };
-
-  componentDidMount = () => {
-    setTimeout(() => {
-      this.setState({
-        visible: true,
-      });
-    }, 1000);
-  };
-
   render() {
     const { t, i18n } = this.props;
 
