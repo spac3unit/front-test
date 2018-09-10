@@ -32,7 +32,14 @@ class App extends Component {
     return (
       <Page>
         <Header i18n={i18n}>
-          <Logo />
+          <Logo>
+            <Text fontFamily="Rubik" color="#424F61">
+              Parla&nbsp;
+            </Text>
+            <Text fontFamily="Rubik" fontWeight="bold" color="#6CADD3">
+              X
+            </Text>
+          </Logo>
           <Button onClick={() => i18n.changeLanguage('ru')}>ru</Button>
           <Button onClick={() => i18n.changeLanguage('en')}>en</Button>
         </Header>
@@ -42,7 +49,7 @@ class App extends Component {
             <ActionButton img={googleIcon} text="Google Play" px="22px" />
           </CallToAction>
           <Footer t={t}>
-            <Flex flexDirection="row" justifyContent="space-between">
+            <Flex flexDirection="row" justifyContent="space-between" alignItems="flex-end">
               <Slogan t={t} />
               <Partners />
               <Socials />
@@ -57,7 +64,7 @@ class App extends Component {
 export default translate('translations')(App);
 
 const Page = styled.div`
-  height: calc(100vh - 60px);
+  height: calc(100vh - 100px);
   background: url(${sombreroBg}) no-repeat right;
   background-size: contain;
   @media ${device.laptop} {
@@ -69,18 +76,11 @@ const Page = styled.div`
 const Header = ({ i18n, children }) => <header>{children}</header>;
 const Footer = ({ children }) => <footer>{children}</footer>;
 
-const LogoText = styled(Text)`
-  display: inline-block;
-  font-family: 'Rubik';
+const Logo = styled(Box)`
+  display: flex;
   font-weight: bold;
+  font-size: 40px;
 `;
-const Logo = () => (
-  <Box>
-    <LogoText>Parla</LogoText> 
-{' '}
-<LogoText color="#6CADD3">X</LogoText>
-  </Box>
-);
 
 const CallToAction = styled(Box)`
   display: flex;
@@ -107,11 +107,11 @@ const Slogan = ({ t }) => (
 const Partners = () => (
   <Box>
     <ul>
-      <li>
-        <span>Yahoo</span>
+      <li style={{ display: 'inline-block' }}>
+        <Text mx="10px">Yahoo</Text>
       </li>
-      <li>
-        <span>TC</span>
+      <li style={{ display: 'inline-block' }}>
+        <Text mx="10px">TC</Text>
       </li>
     </ul>
   </Box>
@@ -119,7 +119,15 @@ const Partners = () => (
 
 const Socials = () => (
   <Box>
-    <ul className="socials">
+    <ul
+      className="socials"
+      style={{
+        textAlign: 'right',
+        fontFamily: 'Rubik',
+        fontSize: '12px',
+        color: '#A0A8B4',
+      }}
+    >
       <li>mail</li>
       <li>facebook</li>
       <li>instagram</li>
