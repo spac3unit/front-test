@@ -1,0 +1,50 @@
+{
+  "presets": [
+    "env",
+    "react"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "styled-components",
+          {
+            "ssr": false,
+            "displayName": true,
+            "preprocess": true
+          }
+        ]
+      ],
+      "presets": [
+        "env",
+        "react"
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "styled-components",
+          {
+            "ssr": false,
+            "displayName": true,
+            "preprocess": true
+          }
+        ]
+      ],
+      "presets": [
+        "env",
+        "react"
+      ]
+    }
+  },
+  "plugins": [
+    [
+      "styled-components",
+      {
+        "ssr": false,
+        "displayName": true,
+        "preprocess": true
+      }
+    ]
+  ]
+}

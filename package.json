@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animate-css-styled-components": "^1.0.0",
     "i18next": "^11.7.0",
     "i18next-browser-languagedetector": "^2.2.3",
     "i18next-xhr-backend": "^1.5.1",
@@ -10,7 +11,8 @@
     "react-dom": "^16.5.0",
     "react-i18next": "^7.11.1",
     "react-scripts": "1.1.5",
-    "styled-components": "^3.4.5"
+    "rebass": "^3.0.0-0",
+    "styled-components": "^4.0.0-beta.2"
   },
   "scripts": {
     "start": "BROWSER='none' react-scripts start",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
+    "babel-plugin-styled-components": "^1.6.4",
     "eslint": "^5.5.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
